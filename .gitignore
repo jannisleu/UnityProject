@@ -61,6 +61,16 @@ Assets/ShaderForge*
 Assets/AmplifyShaderEditor*
 Assets/Plugins/VolumetricLightBeam*
 Assets/PostProcessing*
+
+# Spezialfälle
+Assets/Sprites/Kleiner sitzender perry.png.meta
+Assets/Sprites/Kleiner springender perry.png.meta
+Assets/Sprites/Kleiner rechter perry.png.meta
+Assets/Sprites/Kleiner linker perry.png.meta
+Assets/Sprites/Springender Perry.png.meta
+Assets/Sprites/Springender Eisperry.png.meta
+Assets/Sprites/Springender Regenbogenperry.png.meta
+Assets/Sprites/Springender Feuerperry.png.meta
  
 # Visual Studio Code
 **/.vscode/*
