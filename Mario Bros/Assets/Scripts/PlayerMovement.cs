@@ -58,15 +58,14 @@ public class PlayerMovement : MonoBehaviour
     //Update Function that gets called in a fixed interval (for physics to keep it consistent)
     private void FixedUpdate()
     {
-        Vector2 position = rigidbody.position; 
+        Vector2 viewPos = transform.position; 
         //position += velocity * Time.fixedDeltaTime;
         
-
         //make sure Perry's position stays inside the Camera view and cannot go out of Frame 
         Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
         Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        //position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
+        viewPos.x = Mathf.Clamp(viewPos.x, leftEdge.x + 0.5f, rightEdge.x);
 
-        //rigidbody.MovePosition(position); //provides new position for perry
+        transform.position = viewPos; //provides new position for perry
     }
 }
