@@ -12,37 +12,61 @@ public class PlayerMovement : MonoBehaviour
 
     public float moveSpeed = 8f;
 
+    public float jumpAmount = 35;
+    public float gravityScale = 10;
+    public float fallingGravityScale = 40;
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody2D>();
+        camera = Camera.main;
     }
 
     //Update Function that gets called in every frame of the game
     private void Update()
     {
         HorizontalMovement();
-        camera = Camera.main;
+        Jumping();
     }
 
     //Function for movement on the horizontal axis (left and right) for perry
     private void HorizontalMovement()
     {
-        inputAxis = Input.GetAxis("Horizontal");
-        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime); //velocity is getting higher when running longer 
+        // Get horizontal input (left/right arrow or A/D keys)
+        float moveHorizontal = Input.GetAxis("Horizontal");
 
+        // Move the player horizontally
+        rigidbody.velocity = new Vector2(moveHorizontal * moveSpeed, rigidbody.velocity.y);
+    }
+
+    private void Jumping()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rigidbody.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+        }
+        if (rigidbody.velocity.y >= 0)
+        {
+            rigidbody.gravityScale = gravityScale;
+        }
+        else if (rigidbody.velocity.y < 0)
+        {
+            rigidbody.gravityScale = fallingGravityScale;
+        }
     }
 
     //Update Function that gets called in a fixed interval (for physics to keep it consistent)
     private void FixedUpdate()
     {
         Vector2 position = rigidbody.position; 
-        position += velocity * Time.fixedDeltaTime;
+        //position += velocity * Time.fixedDeltaTime;
+        
 
         //make sure Perry's position stays inside the Camera view and cannot go out of Frame 
         Vector2 leftEdge = camera.ScreenToWorldPoint(Vector2.zero);
         Vector2 rightEdge = camera.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
+        //position.x = Mathf.Clamp(position.x, leftEdge.x, rightEdge.x);
 
-        rigidbody.MovePosition(position); //provides new position for perry
+        //rigidbody.MovePosition(position); //provides new position for perry
     }
 }
