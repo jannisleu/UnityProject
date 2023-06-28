@@ -48,17 +48,12 @@ public class GameManager : MonoBehaviour
         this.world = world;
         this.stage = stage;
 
-        SceneManager.LoadScene($"Level (world)-(stage)");
+        SceneManager.LoadScene($"Level {world}-{stage}");
     }
 
     public void NextLevel()
     {
-        if (world == 1 && stage == 2) //chnage with more stages
-        {
-            LoadLevel(world + 1, 1);
-        }else{
-            LoadLevel(world, stage + 1 );
-        }
+        LoadLevel(world + 1, 1);
     }
 
 
