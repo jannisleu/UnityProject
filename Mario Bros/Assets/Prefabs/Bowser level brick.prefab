@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3772345856154669720}
   - component: {fileID: 2188918967719298607}
   - component: {fileID: 5565399132321488619}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bowser level brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}

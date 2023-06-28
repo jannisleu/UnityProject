@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9072672737323596720}
   - component: {fileID: 7291559746318705039}
   - component: {fileID: 4671037306303033023}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bowserlevel boden oben
   m_TagString: Untagged
   m_Icon: {fileID: 0}

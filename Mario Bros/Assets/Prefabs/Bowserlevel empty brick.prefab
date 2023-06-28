@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 58775549064173441}
   - component: {fileID: 2851806784031638262}
   - component: {fileID: 2024263589126517726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bowserlevel empty brick
   m_TagString: Untagged
   m_Icon: {fileID: 0}

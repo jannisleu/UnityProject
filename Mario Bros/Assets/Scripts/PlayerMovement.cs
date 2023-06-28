@@ -7,21 +7,21 @@ public class PlayerMovement : MonoBehaviour
     private new Camera camera;
     private new Rigidbody2D rigidbody;
 
-    private Vector2 velocity;
-    private float inputAxis;
-
     public float moveSpeed = 8f;
 
     //jumping
-    public float jumpAmount = 35; //only for basic jumping, not needed for advanced jumping
     public float gravityScale = 10;
     public float fallingGravityScale = 15;
     public float buttonTime = 0.5f;
     public float jumpHeight = 20;
     public float cancelRate = 50;
     float jumpTime;
-    bool jumping;
     bool jumpCancelled;
+
+    public bool jumping;
+    public bool running; 
+
+    public bool FacingRight = true;
 
     //Groundcheck
     [SerializeField] private LayerMask platformLayerMask;
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rigidbody = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider2d = transform.GetComponent<CapsuleCollider2D>();
         camera = Camera.main;
     }
@@ -39,9 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         HorizontalMovement();
-        //Jumping();
-
-        JumpingAdvanced();
+        Jumping();
     }
 
     //Function for movement on the horizontal axis (left and right) for perry
@@ -49,28 +47,26 @@ public class PlayerMovement : MonoBehaviour
     {
         // Get horizontal input (left/right arrow or A/D keys)
         float moveHorizontal = Input.GetAxis("Horizontal");
+        if (moveHorizontal > 0 && !FacingRight)
+        {
+            Flip();
+        } else if (moveHorizontal < 0 && FacingRight)
+        {
+            Flip();
+        }
+        if (moveHorizontal == 0)
+        {
+            running = false;
+        } else
+        {
+            running = true;
+        }
 
         // Move the player horizontally
         rigidbody.velocity = new Vector2(moveHorizontal * moveSpeed, rigidbody.velocity.y);
     }
-
+    //Function for vertical movement(jump)
     private void Jumping()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rigidbody.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-        }
-        if (rigidbody.velocity.y >= 0)
-        {
-            rigidbody.gravityScale = gravityScale;
-        }
-        else if (rigidbody.velocity.y < 0)
-        {
-            rigidbody.gravityScale = fallingGravityScale;
-        }
-    }
-
-    private void JumpingAdvanced()
     {
         if (isGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
@@ -107,7 +103,6 @@ public class PlayerMovement : MonoBehaviour
             rigidbody.gravityScale = fallingGravityScale;
         }
     }
-
     private bool isGrounded()
     {
         //check if Perry is grounded by using a BoxCast which checks for collision with all blocks of the platform layer
@@ -115,10 +110,20 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit2D raycastHit = Physics2D.BoxCast(capsuleCollider2d.bounds.center, capsuleCollider2d.bounds.size, 0f, Vector2.down, epsilon, platformLayerMask);
         return (raycastHit.collider != null);
     }
+    //Flip local scale of Perry(important for the animation)
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        //flip local scale
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+        FacingRight = !FacingRight;
+    }
 
     //Update Function that gets called in a fixed interval (for physics to keep it consistent)
     private void FixedUpdate()
     {
+        //if jump is over, reduce the velocity slowly to zero
         if (jumpCancelled && jumping && rigidbody.velocity.y > 0)
         {
             rigidbody.AddForce(Vector2.down * cancelRate);
