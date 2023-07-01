@@ -6,7 +6,7 @@ public class BlockCoin : MonoBehaviour
 {
     void Start()
     {
-        //GameManager.AddCoin() Function in GameMangerScript 
+        GameManager.Instance.AddCoin(); // Function in GameMangerScript 
         StartCoroutine(Animate());
     }
 

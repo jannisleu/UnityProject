@@ -45,16 +45,16 @@ public class DeathAnimation : MonoBehaviour
 
         //Check if Player or Enemy should be disabled 
         PlayerMovement playerMovement = GetComponent<PlayerMovement>();
-        //EntityMovement entityMovement = GetComponent<EntityMovement>();
+        EntityMovement entityMovement = GetComponent<EntityMovement>();
 
         if (playerMovement != null)
         {
             playerMovement.enabled = false;
         }
-        //if (entityMovement != null)
-        //{
-        //    entityMovement.enabled = false;
-        //}
+        if (entityMovement != null)
+        {
+            entityMovement.enabled = false;
+        }
     }
 
     private IEnumerator Animate()

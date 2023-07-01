@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public int world {get; private set;}
     public int stage {get; private set;}
     public int lives {get; private set;}
+    public int coins {get; private set;}
 
     private void Awake()
     {
@@ -70,6 +71,21 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+    }
+
+    public void AddCoin()
+    {
+        coins++;
+
+        if (coins == 15){
+            AddLife();
+            coins=0;
+        }
+    }
+
+    public void AddLife()
+    {
+        lives++;
     }
 
     private void GameOver()

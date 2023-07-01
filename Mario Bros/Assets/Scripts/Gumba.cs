@@ -16,13 +16,18 @@ public class Gumba : MonoBehaviour
     //if the player collides with the enemy from the top -> destroy enemy
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.CompareTag("Player")) {
+            Player player = collision.gameObject.GetComponent<Player>();
+
             if (CollideOnTop()) {
                 Kill();
+            }else{
+                player.Hit();
             }
         }
     }
 
     //check if collision occurs on the top of the object
+    
     private bool CollideOnTop() {
 
         float epsilon = 1f;
@@ -36,7 +41,7 @@ public class Gumba : MonoBehaviour
         Debug.DrawRay(circleCollider.bounds.center + new Vector3(circleCollider.bounds.extents.x, 0), Vector2.up * (circleCollider.bounds.extents.y + epsilon), rayColor);
         return (raycastHit.collider != null);
     }
-
+    
     //destroy gumba and disable all components
     private void Kill() {
         GetComponent<Collider2D>().enabled = false;

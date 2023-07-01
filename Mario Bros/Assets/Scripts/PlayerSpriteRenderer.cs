@@ -19,7 +19,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
         movement = GetComponentInParent<PlayerMovement>();
         
     }
-    /*
+    
     private void OnEnable()
     {
         spriteRenderer.enabled = true;
@@ -29,7 +29,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
     {
         spriteRenderer.enabled = false;
     }
-    */
+    
     private void LateUpdate()
     {
         //enable AnimatedSprite for the running animation if GameObject is running
