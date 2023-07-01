@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4169464517653077461}
   - component: {fileID: 3987817447225063330}
   - component: {fileID: 6645366839234497417}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: FirePerry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179586162726897171}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 3862002953727545915}
   - component: {fileID: 7848805694570414431}
   - component: {fileID: 3944774786837191266}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: IcePerry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2461972598812845181}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 4550683374776858522}
   - component: {fileID: 5405802479496449731}
   - component: {fileID: 6837099039725909020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ GameObject:
   - component: {fileID: 6244966368458796250}
   - component: {fileID: 3486654806926615520}
   - component: {fileID: 7337691672735195268}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Perry
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2924317073935910494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbce1e9615984414a90d53bd0d22e9e0, type: 3}
   m_Name: 
@@ -484,7 +484,7 @@ GameObject:
   - component: {fileID: 1171571809030658808}
   - component: {fileID: 2389812254460687764}
   - component: {fileID: 2491988551805430072}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'Big '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 2030258142110352964}
   - component: {fileID: 2298399214720898655}
   - component: {fileID: 8234373058703098241}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: StarPerry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -632,7 +632,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8462667924243042248}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
