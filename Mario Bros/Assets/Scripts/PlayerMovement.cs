@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement();
         Jumping();
+        Debug.Log(jumping);
     }
 
     //Function for movement on the horizontal axis (left and right) for perry
@@ -77,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
         {
             running = true;
         }
-
         // Move the player horizontally
         rigidbody.velocity = new Vector2(moveHorizontal * moveSpeed, rigidbody.velocity.y);
     }
@@ -117,13 +117,27 @@ public class PlayerMovement : MonoBehaviour
         else if (rigidbody.velocity.y < 0)
         {
             rigidbody.gravityScale = fallingGravityScale;
+            jumping = false;
         }
     }
     private bool isGrounded()
     {
         //check if Perry is grounded by using a BoxCast which checks for collision with all blocks of the platform layer
-        float epsilon = 1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(capsuleCollider2d.bounds.center, capsuleCollider2d.bounds.size, 0f, Vector2.down, epsilon, platformLayerMask);
+        float epsilon = 0.1f;
+        RaycastHit2D raycastHit = Physics2D.BoxCast(capsuleCollider2d.bounds.center, capsuleCollider2d.bounds.size - new Vector3(0.2f, 0, 0), 0f, Vector2.down, epsilon, platformLayerMask);
+        
+        //debugging
+        Color rayColor;
+        if (raycastHit.collider != null) {
+            rayColor = Color.green;
+        } else {
+            rayColor = Color.red;
+        }
+        //debugging 
+        Debug.DrawRay(capsuleCollider2d.bounds.center + new Vector3(capsuleCollider2d.bounds.extents.x, 0), Vector2.down * (capsuleCollider2d.bounds.extents.y + epsilon), rayColor);
+        Debug.DrawRay(capsuleCollider2d.bounds.center - new Vector3(capsuleCollider2d.bounds.extents.x, 0), Vector2.down * (capsuleCollider2d.bounds.extents.y + epsilon), rayColor);
+        Debug.DrawRay(capsuleCollider2d.bounds.center - new Vector3(capsuleCollider2d.bounds.extents.x, capsuleCollider2d.bounds.extents.y + epsilon), Vector2.right * (capsuleCollider2d.bounds.extents.x), rayColor);
+
         return (raycastHit.collider != null);
     }
     //Flip local scale of Perry(important for the animation)
