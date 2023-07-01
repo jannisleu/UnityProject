@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         LoadLevel(1,1);
     }
 
-    private void LoadLevel( int world, int stage)
+    public void LoadLevel( int world, int stage)
     {
         this.world = world;
         this.stage = stage;
@@ -51,10 +51,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene($"Level {world}-{stage}");
     }
 
-    public void NextLevel()
-    {
-        LoadLevel(world + 1, 1);
-    }
+
 
 
     public void ResetLevel(float delay)

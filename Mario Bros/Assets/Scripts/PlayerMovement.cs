@@ -25,14 +25,30 @@ public class PlayerMovement : MonoBehaviour
 
     //Groundcheck
     [SerializeField] private LayerMask platformLayerMask;
-    //private BoxCollider2D boxCollider2d;
+    private Collider2D Collider;
     private CapsuleCollider2D capsuleCollider2d;
 
     private void Awake()
     {
         rigidbody = gameObject.GetComponent<Rigidbody2D>();
         capsuleCollider2d = transform.GetComponent<CapsuleCollider2D>();
+        Collider = GetComponent<Collider2D>();
         camera = Camera.main;
+    }
+
+    private void OnDisable()
+    {
+        rigidbody.isKinematic = true;
+        Collider.enabled = false;
+        jumping = false;
+
+    }
+    
+    private void OnEnable()
+    {
+        rigidbody.isKinematic = false;
+        Collider.enabled = true;
+        jumping = false;
     }
 
     //Update Function that gets called in every frame of the game
