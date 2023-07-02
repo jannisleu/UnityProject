@@ -5,22 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //game manager as instance
     public static GameManager Instance {get; private set; }
+
 
     public int world {get; private set;}
     public int _lives {get; private set;}
     public int coins {get; private set;}
 
+    //import UIManager Script
     [SerializeField]
     private UIManager _uiManager;
 
+    //Start Function to start new game
     private void Start()
     {
-        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        //_uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
         NewGame();
         
     }    
 
+    //Awake function making sure that not more than one instance exists
     private void Awake()
     {
     
@@ -35,6 +40,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    
     private void OnDestroy()
     {
         if (Instance == this)
@@ -44,7 +50,7 @@ public class GameManager : MonoBehaviour
     }
 
  
-
+    //New Game Function to to start new game with 3 new lives
     private void NewGame()
     {
         _lives = 3;
@@ -54,6 +60,7 @@ public class GameManager : MonoBehaviour
         _uiManager.UpdateLives(_lives);
     }
 
+    //Load Level Function to load a level from the 3 given levels
     public void LoadLevel( int world)
     {
         this.world = world;
@@ -61,17 +68,19 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene($"Level {world}");
     }
 
+    //Next Level Function to load new level
     public void NextLevel()
     {
         LoadLevel(world+1);
     }
 
-
+    //Reset Level to reset level after a few seconds of delay
     public void ResetLevel(float delay)
     {
         Invoke(nameof(ResetLevel), delay);
     }
 
+    //Reset Level Function reducing lives by one and ending the game after losing all 3 lives 
     public void ResetLevel()
     {
         _lives--;
@@ -90,6 +99,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Add Coin Function to add coins after collecting them and adding one life after 15 coins 
     public void AddCoin()
     {
         coins++;
@@ -104,11 +114,13 @@ public class GameManager : MonoBehaviour
         
     }
 
+    //Add Life Function adding one life
     public void AddLife()
     {
         _lives++;
     }
 
+    //Game over Function ending the game after 2 seconds
     private void GameOver()
     {
         //maybe GameOver Screen??

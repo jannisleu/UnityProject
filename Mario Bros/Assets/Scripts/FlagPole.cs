@@ -7,9 +7,9 @@ public class FlagPole : MonoBehaviour
     public Transform flag;
     public Transform poleBottom;
     public float speed = 6f;
-    public int nextWorld = 1;
-    public int nextStage = 1;
 
+
+    //Function to trigger the downward sliding after jumping onto the flag
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -19,6 +19,7 @@ public class FlagPole : MonoBehaviour
         }
     }
 
+    //Function that initiates Perrys movement downwards the flagpole and calls the New Level Function from the GameManager Script
     private IEnumerator LevelCompleteSequence(Transform player)
     {
         player.GetComponent<PlayerMovement>().enabled = false;
@@ -34,6 +35,7 @@ public class FlagPole : MonoBehaviour
         GameManager.Instance.NextLevel();
     }
 
+    //Movement Function 
     private IEnumerator MoveTo(Transform subject, Vector3 position)
     {
         while (Vector3.Distance(subject.position, position) > 0.125f)
