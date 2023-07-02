@@ -8,12 +8,22 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance {get; private set; }
 
     public int world {get; private set;}
-    public int stage {get; private set;}
-    public int lives {get; private set;}
+    public int _lives {get; private set;}
     public int coins {get; private set;}
+
+    [SerializeField]
+    private UIManager _uiManager;
+
+    private void Start()
+    {
+        _uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
+        NewGame();
+        
+    }    
 
     private void Awake()
     {
+    
         if (Instance != null) 
         {
             DestroyImmediate(gameObject);
@@ -22,6 +32,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        
     }
 
     private void OnDestroy()
@@ -32,37 +43,43 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        NewGame();
-    }
+ 
 
     private void NewGame()
     {
-        lives = 3;
+        _lives = 3;
 
         LoadLevel(1);
+
+        _uiManager.UpdateLives(_lives);
     }
 
-    public void LoadLevel(int world)
+    public void LoadLevel( int world)
     {
         this.world = world;
 
         SceneManager.LoadScene($"Level {world}");
     }
 
-
+    public void NextLevel()
+    {
+        LoadLevel(world+1);
+    }
 
 
     public void ResetLevel(float delay)
     {
         Invoke(nameof(ResetLevel), delay);
     }
+
     public void ResetLevel()
     {
-        lives--;
+        _lives--;
 
-        if (lives > 0)
+        _uiManager.UpdateLives(_lives);
+        
+
+        if (_lives > 0)
         {
             LoadLevel(world);
 
@@ -70,31 +87,32 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
-    }
 
-    public void NextLevel() {
-        LoadLevel(world+1);
     }
 
     public void AddCoin()
     {
         coins++;
+        //_uiManager.UpdateCoins(coins);
 
-        if (coins == 15){
+        if (coins == 15)
+        {
             AddLife();
             coins=0;
+             _uiManager.UpdateLives(_lives);
         }
+        
     }
 
     public void AddLife()
     {
-        lives++;
+        _lives++;
     }
 
     private void GameOver()
     {
         //maybe GameOver Screen??
-       Invoke(nameof(NewGame), 3f);
+       Invoke(nameof(NewGame), 2f);
 
     }
 }
