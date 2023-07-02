@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement();
         Jumping();
-        Debug.Log(jumping);
+        //Debug.Log(jumping);
     }
 
     //Function for movement on the horizontal axis (left and right) for perry

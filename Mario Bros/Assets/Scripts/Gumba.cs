@@ -31,7 +31,7 @@ public class Gumba : MonoBehaviour
     private bool CollideOnTop() {
 
         float epsilon = 1f;
-        RaycastHit2D raycastHit = Physics2D.BoxCast(circleCollider.bounds.center, circleCollider.bounds.size, 0f, Vector2.up, epsilon, playerLayerMask);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(circleCollider.bounds.center, circleCollider.bounds.size - new Vector3(0.2f, 0, 0), 0f, Vector2.up, epsilon, playerLayerMask);
         Color rayColor;
         if (raycastHit.collider != null) {
             rayColor = Color.green;
@@ -43,7 +43,7 @@ public class Gumba : MonoBehaviour
     }
     
     //destroy gumba and disable all components
-    private void Kill() {
+    public void Kill() {
         GetComponent<Collider2D>().enabled = false;
         GetComponent<EntityMovement>().enabled = false;
         GetComponent<AnimatedSprite>().enabled = false;

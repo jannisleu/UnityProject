@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    public 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public Transform firePosition;
+    public GameObject bullet;
+
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.E)) {
+            Instantiate(bullet, firePosition.position, firePosition.rotation);
+        }
     }
 }

@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
     {
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
+        bigRenderer.enabled = false;
+        fireRenderer.enabled = false;
+        iceRenderer.enabled = false;
+        starRenderer.enabled = false;
+        deathAnimation.enabled = false;
 
     }
 
@@ -37,11 +42,11 @@ public class Player : MonoBehaviour
         {
             if (big) {
                 Shrink();
-            } if (small) {
+            } else if (small) {
                 Death();
-            } if (fire) {
+            } else if (fire) {
                 FireShrink();
-            } if (ice) {
+            } else if (ice) {
                 IceShrink();
             }
             
