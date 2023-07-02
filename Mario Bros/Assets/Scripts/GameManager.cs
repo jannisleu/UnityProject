@@ -41,15 +41,14 @@ public class GameManager : MonoBehaviour
     {
         lives = 3;
 
-        LoadLevel(1,1);
+        LoadLevel(1);
     }
 
-    public void LoadLevel( int world, int stage)
+    public void LoadLevel(int world)
     {
         this.world = world;
-        this.stage = stage;
 
-        SceneManager.LoadScene($"Level {world}-{stage}");
+        SceneManager.LoadScene($"Level {world}");
     }
 
 
@@ -65,12 +64,16 @@ public class GameManager : MonoBehaviour
 
         if (lives > 0)
         {
-            LoadLevel(world, stage);
+            LoadLevel(world);
 
         }else{
             GameOver();
         }
 
+    }
+
+    public void NextLevel() {
+        LoadLevel(world+1);
     }
 
     public void AddCoin()

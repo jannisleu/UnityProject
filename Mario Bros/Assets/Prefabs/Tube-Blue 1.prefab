@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7566648149054304540}
   - component: {fileID: 6275045542813487635}
   - component: {fileID: 6567924771880362632}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pipe-eiswelt - bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 2559031655512644571}
   - component: {fileID: 5583910601236810065}
   - component: {fileID: 5221045866592194930}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pipe-eiswelt-top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5044183550197356960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tube-Blue 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

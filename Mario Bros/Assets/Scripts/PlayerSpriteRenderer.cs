@@ -13,7 +13,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
     public AnimatedSprite run;
 
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         movement = GetComponentInParent<PlayerMovement>();
