@@ -27,7 +27,6 @@ public class Gumba : MonoBehaviour
     }
 
     //check if collision occurs on the top of the object
-    
     private bool CollideOnTop() {
 
         float epsilon = 1f;

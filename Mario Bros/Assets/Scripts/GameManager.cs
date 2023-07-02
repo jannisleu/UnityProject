@@ -14,8 +14,8 @@ public class GameManager : MonoBehaviour
     public int coins {get; private set;}
 
     //import UIManager Script
-    [SerializeField]
-    private UIManager _uiManager;
+    //[SerializeField]
+    //private UIManager _uiManager;
 
     //Start Function to start new game
     private void Start()
@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
 
         LoadLevel(1);
 
-        _uiManager.UpdateLives(_lives);
+        //_uiManager.UpdateLives(_lives);
     }
 
     //Load Level Function to load a level from the 3 given levels
@@ -71,7 +71,11 @@ public class GameManager : MonoBehaviour
     //Next Level Function to load new level
     public void NextLevel()
     {
-        LoadLevel(world+1);
+        if(world < 3) {
+            LoadLevel(world+1);
+        } else {
+            GameOver();
+        }
     }
 
     //Reset Level to reset level after a few seconds of delay
@@ -85,7 +89,7 @@ public class GameManager : MonoBehaviour
     {
         _lives--;
 
-        _uiManager.UpdateLives(_lives);
+        //_uiManager.UpdateLives(_lives);
         
 
         if (_lives > 0)
@@ -109,7 +113,7 @@ public class GameManager : MonoBehaviour
         {
             AddLife();
             coins=0;
-             _uiManager.UpdateLives(_lives);
+            //_uiManager.UpdateLives(_lives);
         }
         
     }

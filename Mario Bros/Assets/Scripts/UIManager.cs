@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+//UI Manager, unfortunately not working
 public class UIManager : MonoBehaviour
 {
    
@@ -17,12 +18,12 @@ public class UIManager : MonoBehaviour
     public void UpdateLives(int health)
     {
         // UPDATE TEXT 
-        _livestext.text = "lives: " + health;
+        _livestext.text = "lives: " + health.ToString();
     }
 
     //Function to update the collected coins
     public void UpdateCoins(int money)
     {
-        _coinstext.text = "coins: " + money;
+        _coinstext.text = "coins: " + money.ToString();
     }
 }

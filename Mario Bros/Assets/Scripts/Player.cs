@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //all renderer for different perrys
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
     public PlayerSpriteRenderer fireRenderer;
@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //If player gets hit, do certain things based on perrys current state(small,big etc.)
     public void Hit()
     {
         if (!dead && !star)
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
         }
     }
 
+    //shrink perry from big to small
     public void Shrink()
     {
         smallRenderer.enabled = true;
@@ -88,6 +90,7 @@ public class Player : MonoBehaviour
         StartCoroutine(ScaleAnimation());
     }
 
+    //grow Perry from small to big
     public void Grow()
     {
         bigRenderer.enabled = true;
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
         StartCoroutine(ScaleAnimation());
     }
 
+    //animation for changing the sprites
     private IEnumerator ScaleAnimation()
     {
         float elapsed = 0f;
@@ -127,6 +131,7 @@ public class Player : MonoBehaviour
         activeRenderer.enabled = true;
     }
 
+    //change perry to ice perry
     public void Ice()
     {
         bigRenderer.enabled = false;
@@ -143,6 +148,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IceScaleAnimation());
     }
 
+    //change perry to fire perry
     public void Fire()
     {
         bigRenderer.enabled = false;
@@ -159,6 +165,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IceScaleAnimation());
     }
 
+    //shrink ice perry to the normal big one
     public void IceShrink()
     {
         bigRenderer.enabled = true;
@@ -169,6 +176,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IceScaleAnimation());
     }
 
+    //shrink fire perry to the normal big one
     public void FireShrink()
     {
         bigRenderer.enabled = true;
@@ -179,7 +187,7 @@ public class Player : MonoBehaviour
         StartCoroutine(IceScaleAnimation());
     }
 
-
+    //change perry to rainbow
     public void Star()
     {
         bigRenderer.enabled = false;
@@ -196,6 +204,7 @@ public class Player : MonoBehaviour
         StartCoroutine(StarScaleAnimation());
     }
 
+    //Scale Animation for Ice
     private IEnumerator IceScaleAnimation()
     {
         float elapsed = 0f;
@@ -219,6 +228,7 @@ public class Player : MonoBehaviour
         activeRenderer.enabled = true;
     }
 
+    //scale Animation for fire
     private IEnumerator FireScaleAnimation()
     {
         float elapsed = 0f;
@@ -242,6 +252,7 @@ public class Player : MonoBehaviour
         activeRenderer.enabled = true;
     }
 
+    //scale animation for rainbow
     private IEnumerator StarScaleAnimation()
     {
         float elapsed = 0f;
@@ -265,6 +276,7 @@ public class Player : MonoBehaviour
         activeRenderer.enabled = true;
     }
 
+    //Kill Perry 
     private void Death()
     {
         bigRenderer.enabled = false;
