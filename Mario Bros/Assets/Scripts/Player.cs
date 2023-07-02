@@ -16,6 +16,13 @@ public class Player : MonoBehaviour
 
     private DeathAnimation deathAnimation;
 
+    //shooting
+    [SerializeField]
+    private GameObject iceBullet;
+    [SerializeField]
+    private GameObject fireBullet;
+    private float nextFire = 0.5f;
+    private float shootCooldown = 0.2f;
 
     public bool big => bigRenderer.enabled;
     public bool small => smallRenderer.enabled;
@@ -34,6 +41,21 @@ public class Player : MonoBehaviour
         starRenderer.enabled = false;
         deathAnimation.enabled = false;
 
+    }
+
+    void Update() {
+        //shooting
+        if(ice) {
+            if (Input.GetKeyDown(KeyCode.E) && nextFire < Time.time) {
+                Instantiate(iceBullet, transform.position + new Vector3(0.5f, 0f, 0f), Quaternion.identity);
+                nextFire = Time.time + shootCooldown;
+            }
+        } else if(fire) {
+            if (Input.GetKeyDown(KeyCode.E) && nextFire < Time.time) {
+                Instantiate(fireBullet, transform.position + new Vector3(0.5f, 0f, 0f), Quaternion.identity);
+                nextFire = Time.time + shootCooldown;
+            }
+        }
     }
 
     public void Hit()
